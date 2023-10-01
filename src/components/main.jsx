@@ -1,30 +1,62 @@
-import React from "react";
+import React, { Component } from "react";
+import Carousel from "react-spring-3d-carousel";
+import { config } from "react-spring";
+import HomeCard from "../cards/homeCard";
+class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      changeSlide: ""
+    };
+  }
+  slides = [
+    {
+      key: 1,
+      content: <HomeCard />
+    },
+    {
+      key: 2,
+      content: <HomeCard />
+    },
+    {
+      key: 3,
+      content: <HomeCard />
+    },
+    {
+      key: 4,
+      content: <HomeCard />
+    },
+    {
+      key: 5,
+      content: <HomeCard />
+    },
+    {
+      key: 6,
+      content: <HomeCard />
+    },
+    {
+      key: 7,
+      content: <HomeCard />
+    },
+    {
+      key: 8,
+      content: <HomeCard />
+    }
+  ].map((slide, index) => {
+    return { ...slide, onClick: () => this.setState({ changeSlide: index }) };
+  });
 
-const Home = () => {
-  return (
-    <>
-      <div className="hero border-1 pb-3">
-        <div className="card bg-dark text-white border-0 mx-3">
-          <img
-            className="card-img img-fluid"
-            src="./assets/main.png.jpg"
-            alt="Card"
-            height={500}
-          />
-          <div className="card-img-overlay d-flex align-items-center">
-            <div className="container">
-              <h5 className="card-title fs-1 text fw-lighter">New Season Arrivals</h5>
-              <p className="card-text fs-5 d-none d-sm-block ">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-            </div>
-          </div>
-        </div>
+  render() {
+    return (
+      <div style={{ width: "40%", height: "500px", margin: "0 auto" }}>
+        <Carousel
+          slides={this.slides}
+          changeSlide={this.state.changeSlide}
+          animationConfig={config.gentle}
+          showNavigation
+        />
       </div>
-    </>
-  );
-};
-
+    );
+  }
+}
 export default Home;
