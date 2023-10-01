@@ -1,30 +1,49 @@
-import React from "react";
+import React from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Card from "react-bootstrap/Card";
+import { makeStyles } from '@mui/styles';
+const useStyles = makeStyles({
+  root: {
+    minWidth: 275,
+    border: `1px solid #A1B7FD`,
+    background: 'linear-gradient(45deg, #E8ECF9 30%, #E8ECF9 90%)',
+  },
+});
+const Carousel = () => {
+  const classes = useStyles();
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3, // Number of slides to show at a time
+    slidesToScroll: 1,
+  };
 
-const Home = () => {
+  const images = [
+    './assets/image1.jpg',
+    './assets/image2.jpg',
+    './assets/image3.jpg',
+    './assets/image1.jpg',
+    './assets/image2.jpg',
+    './assets/image3.jpg',
+    // Add more image URLs here
+  ];
+
   return (
-    <>
-      <div className="hero border-1 pb-3">
-        <div className="card bg-dark text-white border-0 mx-3">
-          <img
-            className="card-img img-fluid"
-            src="./assets/main.png.jpg"
-            alt="Card"
-            height={500}
-          />
-          <div className="card-img-overlay d-flex align-items-center">
-            <div className="container">
-              <h5 className="card-title fs-1 text fw-lighter">New Season Arrivals</h5>
-              <p className="card-text fs-5 d-none d-sm-block ">
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </p>
-            </div>
+    <div className="carousel-container">
+      <Slider {...settings}>
+        {images.map((image, index) => (
+          <Card key={index} className={classes.root}>
+          <div key={index} className="rounded-image-container">
+            <img src={image} className='rounded-image' alt={`Image ${index}`}/>
           </div>
-        </div>
-      </div>
-    </>
+          </Card>
+        ))}
+      </Slider>
+    </div>
   );
 };
 
-export default Home;
+export default Carousel;

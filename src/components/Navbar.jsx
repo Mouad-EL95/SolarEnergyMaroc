@@ -2,12 +2,21 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import stylesAccueil from '../styles/accueil.css'
+import ReactRoundedImage from "react-rounded-image"
 const Navbar = () => {
     const state = useSelector(state => state.handleCart)
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light py-3 sticky-top">
             <div className="container">
-                <NavLink className="navbar-brand fw-bold fs-4 px-2" to="/" style={{color:"#456ABB"} }> Solar Market</NavLink>
+                <NavLink className="navbar-brand fw-bold fs-4 px-2" to="/" style={{ color: "#456ABB" }}>
+                    <ReactRoundedImage
+                        image="./assets/logo.jpg"
+                        roundedColor="#7283BE"
+                        imageWidth="70"
+                        roundedSize="2"
+                        imageHeight="70"
+                    />
+                    </NavLink>
                 <button className="navbar-toggler mx-2" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
