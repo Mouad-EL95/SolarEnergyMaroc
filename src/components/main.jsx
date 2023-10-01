@@ -1,62 +1,49 @@
-import React, { Component } from "react";
-import Carousel from "react-spring-3d-carousel";
-import { config } from "react-spring";
-import HomeCard from "../cards/homeCard";
-class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      changeSlide: ""
-    };
-  }
-  slides = [
-    {
-      key: 1,
-      content: <HomeCard />
-    },
-    {
-      key: 2,
-      content: <HomeCard />
-    },
-    {
-      key: 3,
-      content: <HomeCard />
-    },
-    {
-      key: 4,
-      content: <HomeCard />
-    },
-    {
-      key: 5,
-      content: <HomeCard />
-    },
-    {
-      key: 6,
-      content: <HomeCard />
-    },
-    {
-      key: 7,
-      content: <HomeCard />
-    },
-    {
-      key: 8,
-      content: <HomeCard />
-    }
-  ].map((slide, index) => {
-    return { ...slide, onClick: () => this.setState({ changeSlide: index }) };
-  });
+import React from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Card from "react-bootstrap/Card";
+import { makeStyles } from '@mui/styles';
+const useStyles = makeStyles({
+  root: {
+    minWidth: 275,
+    border: `1px solid #A1B7FD`,
+    background: 'linear-gradient(45deg, #E8ECF9 30%, #E8ECF9 90%)',
+  },
+});
+const Carousel = () => {
+  const classes = useStyles();
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3, // Number of slides to show at a time
+    slidesToScroll: 1,
+  };
 
-  render() {
-    return (
-      <div style={{ width: "40%", height: "500px", margin: "0 auto" }}>
-        <Carousel
-          slides={this.slides}
-          changeSlide={this.state.changeSlide}
-          animationConfig={config.gentle}
-          showNavigation
-        />
-      </div>
-    );
-  }
-}
-export default Home;
+  const images = [
+    './assets/image1.jpg',
+    './assets/image2.jpg',
+    './assets/image3.jpg',
+    './assets/image1.jpg',
+    './assets/image2.jpg',
+    './assets/image3.jpg',
+    // Add more image URLs here
+  ];
+
+  return (
+    <div className="carousel-container">
+      <Slider {...settings}>
+        {images.map((image, index) => (
+          <Card key={index} className={classes.root}>
+          <div key={index} className="rounded-image-container">
+            <img src={image} className='rounded-image' alt={`Image ${index}`}/>
+          </div>
+          </Card>
+        ))}
+      </Slider>
+    </div>
+  );
+};
+
+export default Carousel;

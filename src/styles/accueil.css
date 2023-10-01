@@ -13,3 +13,20 @@ body {
   .solar-market{
     color: rgb(55, 137, 178);
   }
+
+  /* Add this CSS to your stylesheet or component styles */
+.rounded-image-container {
+  display: inline-block; /* Ensures the border-radius works as expected */
+  border-radius: 2%; /* Makes the image circular */
+  overflow: hidden; /* Ensures the image doesn't overflow the container */
+  width: 250px; /* Set the width of your image container */
+  height: 250px; /* Set the height of your image container */
+  margin-right: 20px;
+  
+}
+
+.rounded-image {
+  width: 100%;
+  height: 100%;
+  /*object-fit: cover; /* Maintains the aspect ratio and covers the container */
+}
